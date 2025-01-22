@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import { Menu, Input, Layout } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import mecalogo from '../assets/mecalogo.png';
-import { MecaContext } from '../context/MecaContext';
 import { Link, useNavigate } from 'react-router';
-import { use } from 'react';
+import { MecaContext } from '../context/MecaContext';
+import mecalogo from '../assets/mecalogo.png';
 const { Search } = Input;
 const { Sider } = Layout;
 

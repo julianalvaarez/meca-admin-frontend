@@ -13,7 +13,7 @@ export const MecaContextProvider = ({ children }) => {
     const [padel, setPadel] = useState([])
     async function getActivities() {
         try {
-            const { data } = await axios.get('http://localhost:3000/actividades')
+            const { data } = await axios.get('https://meca-admin-backend.onrender.com/actividades')
             data.gimnasio && setGym(data.gimnasio)
             data.academia_futbol && setFutbol(data.academia_futbol)
             data.boxeo && setBoxeo(data.boxeo)
@@ -25,7 +25,7 @@ export const MecaContextProvider = ({ children }) => {
     }
 
     const getSocios = async () => {
-        const { data, status } = await axios.get('http://localhost:3000/socios')
+        const { data, status } = await axios.get('https://meca-admin-backend.onrender.com/socios')
         if (status !== 200) {
             alert('Error al obtener los socios')
             return
@@ -34,7 +34,7 @@ export const MecaContextProvider = ({ children }) => {
     }
 
     const getBirthdays = async () => {
-        const { data, status } = await axios.get(`http://localhost:3000/socios-por-mes/${mes}`)
+        const { data, status } = await axios.get(`https://meca-admin-backend.onrender.com/socios-por-mes/${mes}`)
         if (status !== 200) {
             alert('Error al obtener los socios')
             return

@@ -61,14 +61,15 @@ export const SocioPage = ({ socio, getSocios }) => {
         const getIdActivities = (nombresActividades) => {
             return nombresActividades.map(nombre => activitiesToIdMap[nombre]).filter(id => id !== undefined);
         };
-        const idActivities = getIdActivities(activities);
+        const idActividades = getIdActivities(activities);
+        console.log(idActividades);
         try {
             console.log(formState);
-            await axios.put(`http://localhost:3000/actualizar-socio/${socio.dni}`, {
+            await axios.put(`https://meca-admin-backend.onrender.com/actualizar-socio/${socio.dni}`, {
                 ...formState,
                 fecha_nacimiento: getFormattedDate(fecha_nacimiento),
                 id_socio: socio.id_socio,
-                idActivities
+                idActividades
             });
 
             getSocios()
@@ -94,7 +95,7 @@ export const SocioPage = ({ socio, getSocios }) => {
             const result = window.confirm('¿Desea eliminar el socio?')
             if (result) {
                 try {
-                    const res = await axios.delete(`http://localhost:3000/eliminar-socio/${socio.dni}`)
+                    const res = await axios.delete(`https://meca-admin-backend.onrender.com/eliminar-socio/${socio.dni}`)
                     getSocios()
                     navigate('/')
                 } catch (error) {

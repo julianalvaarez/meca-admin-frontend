@@ -1,7 +1,6 @@
-import { Space, Table, ConfigProvider } from 'antd';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Table, ConfigProvider } from 'antd';
 import { MecaContext } from '../context/MecaContext';
-import { useState } from 'react';
 
 
 const columns = [

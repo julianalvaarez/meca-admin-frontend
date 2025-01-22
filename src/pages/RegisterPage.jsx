@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Button, ConfigProvider, DatePicker, Form, Input, InputNumber, Alert, Select, Space } from 'antd';
+import { Button, ConfigProvider, Form, Input, InputNumber, Alert, Select, Space } from 'antd';
 import axios from 'axios';
 import { MecaContext } from '../context/MecaContext';
+import { useNavigate } from 'react-router';
 const MyFormItemContext = React.createContext([]);
 function toArr(str) {
     return Array.isArray(str) ? str : [str];
@@ -21,6 +22,7 @@ const options = ['gimnasio', 'academia_futbol', 'boxeo', 'academia_padel'].map((
 
 
 export const RegisterPage = () => {
+    const navigate = useNavigate();
     const { getSocios, getActivities } = useContext(MecaContext);
     const [visible, setVisible] = useState(false);
     const [error, setError] = useState(false);
@@ -48,12 +50,11 @@ export const RegisterPage = () => {
         const idActividades = obtenerIdsActividades(actividades);
         console.log(idActividades);
         try {
-            const res = await axios.post('http://localhost:3000/socios', { ...user, idActividades });
-            console.log(res);
+            const res = await axios.post('https://meca-admin-backend.onrender.com/socios', { ...user, idActividades });
             setVisible(true);
             getSocios();
             getActivities()
-            console.log(res);
+            navigate(`/socio/${user.dni}`);
         } catch (error) {
             console.log(error);
             setError(true);

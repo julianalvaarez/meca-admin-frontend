@@ -1,10 +1,8 @@
 import { Layout, theme, } from 'antd';
-import { Sidebar } from '../components/Sidebar';
 const { Header, Content } = Layout;
 import mecalogocompleto from '../assets/mecalogocompleto.png';
 import { MainContent } from '../components/MainContent';
 import { Link } from 'react-router';
-import { Footer } from 'antd/es/layout/layout';
 export const HomePage = () => {
     const {
         token: { borderRadiusLG },

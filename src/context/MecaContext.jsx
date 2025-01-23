@@ -5,6 +5,10 @@ import { createContext, useEffect, useState } from "react"
 export const MecaContext = createContext()
 export const MecaContextProvider = ({ children }) => {
     const [socios, setSocios] = useState([])
+    const [alert, setAlert] = useState(false)
+    const [deleteAlert, setDeleteAlert] = useState(false)
+    const [createAlert, setCreateAlert] = useState(false)
+    const [errorAlert, setErrorAlert] = useState(false)
     const [cumpleaños, setCumpleaños] = useState([])
     const mes = new Date().getMonth() + 1
     const [gym, setGym] = useState([])
@@ -49,7 +53,7 @@ export const MecaContextProvider = ({ children }) => {
     }, [])
 
     return (
-        <MecaContext.Provider value={{ socios, getSocios, cumpleaños, getBirthdays, gym, futbol, boxeo, padel, getActivities }}>
+        <MecaContext.Provider value={{ socios, getSocios, cumpleaños, getBirthdays, gym, futbol, boxeo, padel, getActivities, alert, setAlert, errorAlert, setErrorAlert, deleteAlert, setDeleteAlert, createAlert, setCreateAlert }}>
             {children}
         </MecaContext.Provider>
     )

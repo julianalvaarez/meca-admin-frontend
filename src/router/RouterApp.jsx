@@ -7,7 +7,7 @@ import { Sidebar } from '../components/Sidebar';
 
 
 export const RouterApp = () => {
-    const { socios: data, getSocios } = useContext(MecaContext)
+    const { socios: data } = useContext(MecaContext)
     const [socios, setSocios] = useState([])
     useEffect(() => {
         setSocios(data)
@@ -20,7 +20,7 @@ export const RouterApp = () => {
                 <Route path="/*" element={<HomePage />} />
                 <Route path='/actividades' element={<ActividadesPage />} />
                 <Route path='/registrar-socio' element={<RegisterPage />} />
-                {socios.map(socio => <Route key={socio.dni} path={`/socio/${socio.dni}`} element={<SocioPage socio={socio} getSocios={getSocios} />} />)}
+                {socios.map(socio => <Route key={socio.dni} path={`/socio/${socio.dni}`} element={<SocioPage socio={socio} />} />)}
             </Routes>
         </Layout>
     )

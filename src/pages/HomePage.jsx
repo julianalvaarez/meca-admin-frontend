@@ -2,13 +2,18 @@ import { Layout, theme, } from 'antd';
 const { Header, Content } = Layout;
 import mecalogocompleto from '../assets/mecalogocompleto.png';
 import { MainContent } from '../components/MainContent';
+import { Alerts } from '../components/Alerts';
 import { Link } from 'react-router';
+import { useContext, useEffect } from 'react';
+import { MecaContext } from '../context/MecaContext';
 export const HomePage = () => {
-    const {
-        token: { borderRadiusLG },
-    } = theme.useToken();
+    const { cumpleaños, getSocios } = useContext(MecaContext)
+    const { token: { borderRadiusLG } } = theme.useToken();
 
-    const color = '#001529'
+    useEffect(() => {
+        getSocios()
+    }, [cumpleaños])
+
     return (
         <>
             <Layout style={{ background: '#001529', minHeight: '100vh' }}>
@@ -46,6 +51,7 @@ export const HomePage = () => {
                         <MainContent />
                     </div>
                 </Content>
+                <Alerts />
             </Layout>
         </>
     )

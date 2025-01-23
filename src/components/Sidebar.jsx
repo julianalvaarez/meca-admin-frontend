@@ -52,7 +52,8 @@ export const Sidebar = () => {
 
     return (
         <Sider
-            style={{ minHeight: '100vh', overflow: 'auto', borderRight: '1px solid #888888', marginBottom: 0 }}
+            style={{ height: '100vh', overflow: 'auto', borderRight: '1px solid #888888', marginBottom: 0 }}
+            className='fixed z-10'
             breakpoint="lg"
             collapsedWidth="0"
             onBreakpoint={(broken) => { console.log(broken); }} onCollapse={(collapsed, type) => { console.log(collapsed, type); }}

@@ -23,7 +23,7 @@ const options = ['gimnasio', 'academia_futbol', 'boxeo', 'academia_padel'].map((
 
 export const RegisterPage = () => {
     const navigate = useNavigate();
-    const { getSocios, getActivities } = useContext(MecaContext);
+    const { getSocios, getActivities, setCreateAlert } = useContext(MecaContext);
     const [visible, setVisible] = useState(false);
     const [error, setError] = useState(false);
     const [actividades, setActividades] = useState([])
@@ -37,7 +37,6 @@ export const RegisterPage = () => {
         setError(false);
     };
     const onFinish = async ({ user }) => {
-        console.log({ user, actividades });
         const actividadToIdMap = {
             'gimnasio': 1,
             'academia_futbol': 2,
@@ -50,11 +49,15 @@ export const RegisterPage = () => {
         const idActividades = obtenerIdsActividades(actividades);
         console.log(idActividades);
         try {
-            const res = await axios.post('https://meca-admin-backend.onrender.com/socios', { ...user, idActividades });
+            await axios.post('https://meca-admin-backend.onrender.com/socios', { ...user, idActividades });
             setVisible(true);
             getSocios();
             getActivities()
             navigate(`/socio/${user.dni}`);
+            setCreateAlert(true);
+            setTimeout(() => {
+                setCreateAlert(false);
+            }, 2000);
         } catch (error) {
             console.log(error);
             setError(true);

@@ -1,4 +1,5 @@
-import { Layout, theme, } from 'antd';
+import { Flex, Layout, Spin, theme, } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 const { Header, Content } = Layout;
 import mecalogocompleto from '../assets/mecalogocompleto.png';
 import { MainContent } from '../components/MainContent';
@@ -7,7 +8,7 @@ import { Link } from 'react-router';
 import { useContext, useEffect } from 'react';
 import { MecaContext } from '../context/MecaContext';
 export const HomePage = () => {
-    const { cumpleaños, getSocios } = useContext(MecaContext)
+    const { cumpleaños, getSocios, dataIsLoading } = useContext(MecaContext)
     const { token: { borderRadiusLG } } = theme.useToken();
 
     useEffect(() => {
@@ -33,6 +34,7 @@ export const HomePage = () => {
                     </nav>
                     {/* <h1 className='font-bold text-3xl text-blue-900 mt-10'>ADMINISTRACION DE SOCIOS</h1> */}
                     <img src={mecalogocompleto} alt="Logo La Meca" width={300} />
+                    {dataIsLoading && <Flex justify='center' align='center' style={{ height: '100%' }}><Spin indicator={<LoadingOutlined style={{ fontSize: 80 }} spin />} /></Flex>}
                 </Header>
                 <Content
                     style={{

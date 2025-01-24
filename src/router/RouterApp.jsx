@@ -17,10 +17,11 @@ export const RouterApp = () => {
             <Sidebar />
 
             <Routes>
-                <Route path="/*" element={<HomePage />} />
+                <Route path="/" element={<HomePage />} />
                 <Route path='/actividades' element={<ActividadesPage />} />
                 <Route path='/registrar-socio' element={<RegisterPage />} />
                 {socios.map(socio => <Route key={socio.dni} path={`/socio/${socio.dni}`} element={<SocioPage socio={socio} />} />)}
+                <Route path="/*" element={<HomePage />} />
             </Routes>
         </Layout>
     )

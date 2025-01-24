@@ -40,6 +40,7 @@ export const MainContent = () => {
     })
 
     const data = socios.map((socio, index) => ({ key: index, nombre: socio.nombre, fecha_nacimiento: socio.fecha_nacimiento }))
+
     return (
         <ConfigProvider theme={{ token: { colorBgContainer: '#001529', colorText: '#fff', } }}>
             <div className='w-1/3 mx-auto mt-4 border border-solid rounded-lg border-gray-400 p-4'>

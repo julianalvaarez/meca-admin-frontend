@@ -19,10 +19,11 @@ export const SocioPage = ({ socio }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formState, setFormState] = useState({ ...socio });
     const [newActivities, setNewActivities] = useState([])
+    const [newCategoryPadel, setNewCategoryPadel] = useState('')
     const showModal = () => {
         setFormState({ ...socio }); // Actualiza el estado con los datos del socio actual
-        setNewActivities([...socio.actividades]); // Asegúrate de inicializar las actividades también
-        console.log(newActivities);
+        setNewActivities([...socio.actividades]);
+        setNewCategoryPadel(socio.categoria_padel);
         setIsModalOpen(true);
     };
 
@@ -44,7 +45,6 @@ export const SocioPage = ({ socio }) => {
                     }, 2000)
                 } catch (error) {
                     alert(error);
-
                 }
             }
         }
@@ -62,7 +62,7 @@ export const SocioPage = ({ socio }) => {
 
     return (
         <section style={{ backgroundColor: '#001529', width: '100%' }} >
-            <EditSocioModal formState={formState} setFormState={setFormState} socio={socio} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} newActivities={newActivities} setNewActivities={setNewActivities} />
+            <EditSocioModal formState={formState} setFormState={setFormState} socio={socio} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} newActivities={newActivities} setNewActivities={setNewActivities} newCategoryPadel={newCategoryPadel} setNewCategoryPadel={setNewCategoryPadel} />
             <div className="w-full">
                 <div style={{ width: '40%', margin: 'auto', marginTop: '10%' }} >
                     <div className='flex gap-4 items-center'>
@@ -94,7 +94,7 @@ export const SocioPage = ({ socio }) => {
                             <hr className='border-gray-600' />
                             <p className='text-gray-300 text-sm'><span className='font-bold text-lg mr-1 text-white'>Telefono:</span> {socio.telefono}</p>
                             <hr className='border-gray-600' />
-                            <p className='text-gray-300 text-sm'><span className='font-bold text-lg mr-1 text-white'>Cantidad de Reservas:</span> {socio.cantidad_reservas}</p>
+                            <p className='text-gray-300 text-sm'><span className='font-bold text-lg mr-1 text-white'>Categoria de Padel:</span> {socio.categoria_padel ? socio.categoria_padel : 'Sin categoria'}</p>
                             <hr className='border-gray-600' />
                             <p className='text-gray-300 text-sm'><span className='font-bold text-lg mr-1 text-white'>Fecha de Registro:</span> {getFormattedDate(socio.fecha_registro)}</p>
                             <hr className='border-gray-600' />

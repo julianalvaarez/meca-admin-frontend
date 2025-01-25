@@ -4,10 +4,10 @@ import { SelectActivities } from "./SelectActivities";
 import { Input, Modal } from "antd";
 import axios from "axios";
 
-export const EditSocioModal = ({ formState, setFormState, socio, isModalOpen, setIsModalOpen, newActivities, setNewActivities }) => {
+export const EditSocioModal = ({ formState, setFormState, socio, isModalOpen, setIsModalOpen, newActivities, setNewActivities, newCategoryPadel, setNewCategoryPadel }) => {
     const { getBirthdays, getSocios, setAlert, setErrorAlert } = useContext(MecaContext)
     const [isLoading, setIsLoading] = useState(false)
-    const { nombre = '', fecha_nacimiento = '', mail = '', telefono = '', cantidad_reservas = '' } = formState;
+    const { nombre = '', fecha_nacimiento = '', mail = '', telefono = '' } = formState;
 
     const closeModal = async () => {
         const activitiesToIdMap = {
@@ -26,7 +26,8 @@ export const EditSocioModal = ({ formState, setFormState, socio, isModalOpen, se
             await axios.put(`https://meca-admin-backend.onrender.com/actualizar-socio/${socio.dni}`, {
                 ...formState,
                 id_socio: socio.id_socio,
-                idActividades
+                idActividades,
+                categoria_padel: newCategoryPadel
             });
             getBirthdays()
             getSocios()
@@ -70,8 +71,7 @@ export const EditSocioModal = ({ formState, setFormState, socio, isModalOpen, se
                         <Input placeholder='Email' name='mail' value={mail} onChange={handleInputFormChange} defaultValue={socio.mail} />
                         <Input placeholder='Telefono' name='telefono' value={telefono} onChange={handleInputFormChange} defaultValue={socio.telefono} />
                         <Input placeholder='Fecha de Nacimiento' name='fecha_nacimiento' value={fecha_nacimiento} onChange={handleInputFormChange} defaultValue={socio.fecha_nacimiento} />
-                        <Input placeholder='Cantidad de Reservas' name='cantidad_reservas' value={cantidad_reservas} onChange={handleInputFormChange} defaultValue={socio.cantidad_reservas} />
-                        <SelectActivities defaultActivities={newActivities} setNewActivities={setNewActivities} />
+                        <SelectActivities defaultActivities={newActivities} setNewActivities={setNewActivities} newCategoryPadel={newCategoryPadel} setNewCategoryPadel={setNewCategoryPadel} />
                     </div>
                 </form>
             </Modal>

@@ -27,6 +27,7 @@ export const RegisterPage = () => {
     const [visible, setVisible] = useState(false);
     const [error, setError] = useState(false);
     const [actividades, setActividades] = useState([])
+    const [categoriaPadel, setCategoriaPadel] = useState('')
 
     const handleChange = (value) => {
         setActividades([...value]);
@@ -49,7 +50,7 @@ export const RegisterPage = () => {
         const idActividades = obtenerIdsActividades(actividades);
         console.log(idActividades);
         try {
-            await axios.post('https://meca-admin-backend.onrender.com/socios', { ...user, idActividades });
+            await axios.post('https://meca-admin-backend.onrender.com/socios', { ...user, idActividades, categoria_padel: categoriaPadel });
             setVisible(true);
             getSocios();
             getActivities()
@@ -120,10 +121,10 @@ export const RegisterPage = () => {
                         ]}>
                             <Input type="email" placeholder='Correo Electronico' />
                         </MyFormItem>
-                        <MyFormItem name="cantidad_reservas" label="Cantidad de Reservas">
+                        {/* <MyFormItem name="cantidad_reservas" label="Cantidad de Reservas">
                             <InputNumber placeholder='Cantidad de Reservas' style={{ width: '100%' }} />
-                        </MyFormItem>
-                        <MyFormItem name='actividades' label='Actividades'>
+                        </MyFormItem> */}
+                        <MyFormItem name='actividades' label='Actividades - Opcional'>
                             <Space
                                 style={{
                                     width: '100%',
@@ -135,13 +136,31 @@ export const RegisterPage = () => {
                                     allowClear
                                     style={{
                                         width: '100%',
-                                        marginBottom: '20px',
                                     }}
                                     placeholder="Actividades"
                                     onChange={handleChange}
                                     options={options}
                                 />
 
+                            </Space>
+                        </MyFormItem>
+                        <MyFormItem name="categoria_padel" label="Categoria Padel - Opcional">
+                            <Space style={{ width: '100%' }} direction="vertical">
+                                <Select
+                                    defaultValue="Categoria"
+                                    onChange={(value) => setCategoriaPadel(value)}
+                                    style={{ width: '100%', marginBottom: '10px' }}
+                                    options={[
+                                        { value: 'octava', label: '8va' },
+                                        { value: 'septima', label: '7ma' },
+                                        { value: 'sexta', label: '6ta' },
+                                        { value: 'quinta', label: '5ta' },
+                                        { value: 'cuarta', label: '4ta' },
+                                        { value: 'tercera', label: '3ra' },
+                                        { value: 'segunda', label: '2da' },
+                                        { value: 'primera', label: '1ra' },
+                                    ]}
+                                />
                             </Space>
                         </MyFormItem>
                     </MyFormItemGroup>

@@ -7,7 +7,7 @@ import axios from "axios";
 export const EditSocioModal = ({ formState, setFormState, socio, isModalOpen, setIsModalOpen, newActivities, setNewActivities, newCategoryPadel, setNewCategoryPadel }) => {
     const { getBirthdays, getSocios, setAlert, setErrorAlert } = useContext(MecaContext)
     const [isLoading, setIsLoading] = useState(false)
-    const { nombre = '', fecha_nacimiento = '', mail = '', telefono = '' } = formState;
+    const { nombre = '', fecha_nacimiento = '', mail = '', telefono = '', notas = '' } = formState;
 
     const closeModal = async () => {
         const activitiesToIdMap = {
@@ -71,6 +71,7 @@ export const EditSocioModal = ({ formState, setFormState, socio, isModalOpen, se
                         <Input placeholder='Email' name='mail' value={mail} onChange={handleInputFormChange} defaultValue={socio.mail} />
                         <Input placeholder='Telefono' name='telefono' value={telefono} onChange={handleInputFormChange} defaultValue={socio.telefono} />
                         <Input placeholder='Fecha de Nacimiento' name='fecha_nacimiento' value={fecha_nacimiento} onChange={handleInputFormChange} defaultValue={socio.fecha_nacimiento} />
+                        <textarea className="p-2 border rounded-md border-gray-300" placeholder="Notas Adicionales" name="notas" value={notas} onChange={handleInputFormChange} defaultValue={socio.notas ? socio.notas : ''} />
                         <SelectActivities defaultActivities={newActivities} setNewActivities={setNewActivities} newCategoryPadel={newCategoryPadel} setNewCategoryPadel={setNewCategoryPadel} />
                     </div>
                 </form>

@@ -121,6 +121,9 @@ export const RegisterPage = () => {
                         ]}>
                             <Input type="email" placeholder='Correo Electronico' />
                         </MyFormItem>
+                        <MyFormItem name="notas" label="Notas Adicionales - Opcional">
+                            <textarea className="w-full p-2 bg-transparent text-white outline-none resize-none border border-gray-500 rounded-md" style={{ minHeight: "60px" }} />
+                        </MyFormItem>
                         {/* <MyFormItem name="cantidad_reservas" label="Cantidad de Reservas">
                             <InputNumber placeholder='Cantidad de Reservas' style={{ width: '100%' }} />
                         </MyFormItem> */}

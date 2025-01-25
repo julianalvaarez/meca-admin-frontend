@@ -37,6 +37,7 @@ export const SelectActivities = ({ setNewActivities, defaultActivities, newCateg
                     onChange={(value) => setNewCategoryPadel(value)}
                     style={{ width: '100%', marginBottom: '10px' }}
                     options={[
+                        { value: null, label: 'Sin Categoria' },
                         { value: 'octava', label: '8va' },
                         { value: 'septima', label: '7ma' },
                         { value: 'sexta', label: '6ta' },

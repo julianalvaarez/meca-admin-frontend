@@ -30,6 +30,7 @@ export const HomePage = () => {
                         <ul className='flex gap-14 justify-center'>
                             <li><Link to={"/registrar-socio"} >REGISTRAR SOCIO</Link></li>
                             <li><Link to={"/actividades"} >ACTIVIDADES</Link></li>
+                            <li><Link to={"/categorias"} >CATEGORIAS PADEL</Link></li>
                         </ul>
                     </nav>
                     {/* <h1 className='font-bold text-3xl text-blue-900 mt-10'>ADMINISTRACION DE SOCIOS</h1> */}
